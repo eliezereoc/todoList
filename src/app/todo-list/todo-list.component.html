@@ -1,0 +1,45 @@
+<div>
+    <input #inputDescription type="text" placeholder="Descrição da tarefa">
+    <button (click)= "addTask(inputDescription.value)">Adicionar a Tarefa</button>
+</div>
+<div>
+    <h1>Lista de Tarefas</h1>
+    <table>
+        <tr *ngFor= "let task of tasks; let i = index">
+            <td><input type="checkbox" [checked]= "task.done"></td>
+            <td>{{task.description}}</td>
+            <td><button (click)= "deleteTask(i)">Excluir</button></td>
+        </tr>
+    </table>
+</div>
+<div [ngSwitch]= "tasks.length">
+    <div *ngSwitchCase= "0">Nenhuma Tarefa</div>
+    <div *ngSwitchCase= "1">Uma Tarefa</div>
+    <div *ngSwitchDefault>{{tasks.length}} tarefas</div>
+</div>
+
+<div>
+    <h2>Tarefas não Concluidas</h2>
+    <table>
+        <tr *ngFor= "let task of tasks; let i = index">
+            <ng-container *ngIf= "!task.done">
+                <td><input type="checkbox" [checked]= "task.done"></td>
+                <td>{{task.description}}</td>
+                <td><button (click)= "deleteTask(i)">Excluir</button></td>
+            </ng-container>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <h2>Tarefas Concluidas</h2>
+    <table>
+        <tr *ngFor= "let task of tasks; let i = index">
+            <ng-container *ngIf= "task.done">
+                <td><input type="checkbox" [checked]= "task.done"></td>
+                <td>{{task.description}}</td>
+                <td><button (click)= "deleteTask(i)">Excluir</button></td>
+            </ng-container>
+        </tr>
+    </table>
+</div>
