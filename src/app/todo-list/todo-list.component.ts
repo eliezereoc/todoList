@@ -8,6 +8,8 @@ import { TodoItem } from './todoItem';
 })
 export class TodoListComponent implements OnInit {
 
+  newTask: string= '';
+
   tasks: TodoItem[] = [
     {description: 'Arrumar a cama', done: true},
     {description: 'Fazer o trabalho prático do Bootcamp', done: false}
@@ -18,9 +20,9 @@ export class TodoListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addTask(description: string){
+  addTask(){
     this.tasks.push({
-      description: description,
+      description: this.newTask,
       done: false
     });
   }
